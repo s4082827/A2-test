@@ -1,0 +1,462 @@
+:root {
+  /* ---- Colors (keep it tiny) ---- */
+  --milkwhite: #f0f6ea;
+  --white: #ffffff;
+  --black: #160038;
+  --darkpurple: #392656;
+  --purple: #5d3c8b;
+  --darkblue: #093493;
+  --blue: #2361d8;
+  --lightblue: #0d8cff;
+  --green: #139650;
+  --mint: #07d0ae;
+  --darkyellow: #feb904;
+  --neonyellow: #f9d801;
+  --ivory: #ffe8aa;
+  --hotpink: #eb368e;
+  --red: #e3224e;
+  --orange: #fb582d;
+  --pink: #f595a3; 
+
+
+  /* ---- Spacing (4 sizes is enough) ---- */
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 1rem; /* 16px */
+  --space-4: 1.5rem; /* 24px */
+
+  /* ---- Type (3 sizes to start) ---- */
+ --fs-small: 1rem; /* 16px */
+  --fs-base: 1.25rem; /* 20px */
+  --fs-large: 1.5rem; /* 24px */
+  --fs-xlarge: 2rem; /* 32px */
+  --fs-xxlarge: 4rem; /* 64px */
+
+  /* ---- Corners & shadow ---- */
+  --radius: 8px;
+
+  /* ---- Motion (optional) ---- */
+  --dur: 160ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---- Layout (optional) ---- */
+  --container: 72rem; /* max content width */
+}
+
+/* ===== Dark mode (optional): add data-theme="dark" on <html> or <body> =====
+[data-theme="dark"] {
+  --color-bg: #0f172a;
+  --color-text: #e5e7eb;
+  --color-muted: #94a3b8;
+  --color-border: #1f2937;
+  --color-brand: #60a5fa; /* brighter blue for contrast
+}
+
+===========================
+     Minimal base styles using the vars
+     (keep or delete—here to show usage)
+     =========================== */
+
+/* ===== SCROLL BAR ===== */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--blue);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--pink);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--pink);
+  cursor: url("images/hovercursor.png"), auto;
+}
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--pink) var(--blue);
+}
+
+
+/* sidebar container */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 160px;          /* sidebar width */
+  height: 100vh;         /* full viewport height */
+  background: var(--blue); 
+  border: 3px solid var(--darkblue);  /* blue background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 1000; /* ensure nav is above other content */
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+
+/* logo at top */
+nav li.logo {
+  margin-top : -20px; /* space above logo */
+  margin-bottom: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+nav li.logo img {
+  max-width: 100%;   /* never exceed sidebar width */
+  height: auto;      /* keep proportions */
+  display: block;
+  padding: var(--space-2);     /* smaller padding for logo */
+  box-sizing: border-box;
+}
+nav li.logo:hover img {
+  content: url(images/logohover.png);
+}
+nav li.logo:active img {
+  content: url(images/logohover.png);
+}
+/* logo link specific styling */
+nav li.logo a {
+  padding: var(--space-2) 0;  /* much smaller padding for logo link */
+}
+
+/* nav items */
+nav li {
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  text-decoration: none;
+  color: var(--pink); 
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--fs-large);
+  padding: var(--space-4) 0;
+  transition: color 0.3s ease; /* Only transition color, not layout properties */
+}
+/* hover effect */
+nav a:hover , nav li.logo :hover {
+  color: var(--milkwhite);      /* ivory text on hover */
+  cursor: url("images/hovercursor.png"), auto; /* custom hover cursor */
+}
+
+/* active page link */
+nav a.active {
+    padding: 30vh 0;
+    background: var(--pink); /* pink block */
+    color: var(--milkwhite); /* ivory text */
+    font-size: var(--fs-xlarge); /* larger font size for active link */
+    border-radius: var(--radius);
+    border: 3px solid var(--darkblue); /* dark blue border */
+    margin: 0 var(--space-2);
+
+}
+@media (max-width: 1024px) {
+    nav {
+        width: 100px;
+    }
+    nav li.logo img {
+        max-width: 100px; /* smaller logo on mobile */
+    }
+    nav a {
+        font-size: var(--fs-base);
+    }
+    nav a.active {
+        padding: 20vh 0; /* adjust padding for smaller screens */
+        font-size: var(--fs-base); /* smaller font size for active link */
+    }
+}
+@media (max-width: 767px) {
+        nav {
+        top: 0;
+        left: 0; /* Ensure nav starts from left edge */
+        width: 100%;
+        height: 50px;
+        border: 2px solid var(--darkblue);
+        z-index: 1500;
+        padding: 0;
+        margin: 0;
+    }
+    nav ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }   
+    nav li {
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+    nav a {
+        display: block;
+        text-decoration: none;
+        color: var(--pink);
+        font-family: "Lilita One", sans-serif;
+        font-size: var(--fs-base);
+        padding:10px clamp(5px, 10px, 20px);
+    }
+    /* logo at left */
+    nav li.logo {
+        margin: 0;
+        justify-content: space-between;
+        order: -1;
+    }
+    nav li.logo img {
+        max-width: 70px;
+        height: auto;
+        padding: 0; /* smaller padding for logo */
+    }
+    nav li.logo a {
+        padding: var(--space-1); /* smaller padding for logo link */
+    }
+    
+    nav a.active {
+    border: 2px solid var(--darkblue); /* dark blue border */
+    padding:10px clamp(5px, 10px, 20px);
+    font-size: var(--fs-base);
+    }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  cursor: url("images/cursor.png"), auto;
+  background-image: url(images/aboutpattern.png);
+  background-repeat: repeat;
+  background-size: 4rem 4rem;
+  font-family: "Carlito", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  display: grid;
+  grid-template-columns: 160px 1fr; /* sidebar and main content */
+  grid-template-rows: 1fr auto; /* main content and footer */
+}
+main{
+  margin: 0 var(--space-4);
+
+}
+h1{
+  font-size: clamp(3rem, 4vw, 5rem);
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--pink);
+  -webkit-text-stroke: clamp(2px, 4vw, 3px) var(--red); /* blue outline */
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+h2 {
+  font-size: clamp(var(--fs-large), 5vw, var(--fs-xlarge));
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.hero{
+  color: var(--blue);
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: var(--space-4);
+
+}
+p{
+  font-size: var(--fs-base);
+  font-family: "Carlito", sans-serif;
+  max-width: 700px;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--darkblue);
+  margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+  body {
+    grid-template-columns: 100px 1fr; /* smaller sidebar on mobile */
+  }
+}
+@media (max-width: 767px) {
+  body {
+    grid-template-columns: 1fr; /* single column layout */
+    grid-template-rows: 40px 1fr auto; /* nav, main content, and footer */
+  }
+}
+
+.characters{
+  color: var(--blue);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  
+}
+
+.char-container {
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background-color: var(--milkwhite);
+  border: 3px solid var(--darkblue);
+  border-radius: var(--radius);
+  margin: var(--space-4);
+
+}
+
+.char {
+  display: none; /* hidden by default */
+}
+
+.char.active {
+  display: block; /* show only active one */
+}
+
+.char-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:0;
+}
+.char-title{
+  background-color: var(--pink);
+  padding: 0;
+  border: 2px solid var(--darkblue);
+  border-radius: var(--radius);
+  color: var(--milkwhite);
+  margin: var(--space-2);
+}
+#og{
+  background-color: var(--hotpink);
+}
+#artist{
+  background-color: var(--blue);
+}
+#musical{
+  background-color: var(--red);
+}
+#chill{
+  background-color: var(--green);
+}
+.char-image {
+  flex: 1;
+  min-width: 250px;
+  height: 380px;
+  margin: var(--space-4);
+  margin-right: 0;
+}
+.char-image img {
+  width: auto;
+  height: 380px;
+  object-fit: cover;
+}
+
+
+.char-text {
+  flex: 1;
+  text-align: left;
+  padding: 0 var(--space-2);
+  margin: 0 var(--space-4) 0 0;
+}
+.char-text ul{
+  padding: 0;
+  margin: var(--space-2) var(--space-4);
+}
+.char-text p {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+/* arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: url("images/hovercursor.png"), auto;
+}
+.left img, .right img {
+  width: auto;
+  height: 40px;
+}
+.left img:hover{
+  content: url(images/pressback.png);
+}
+.left img:active{
+  content: url(images/pressback.png);
+}
+.right img:hover {
+  content: url(images/pressnext.png);
+}
+.right img:active {
+  content: url(images/pressnext.png);
+}
+.arrow.left {
+  left: 0;
+}
+
+.arrow.right {
+  right: 0;
+}
+
+footer{
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-2);
+  background-color: var(--darkblue);
+  color: var(--ivory);
+  font-size: var(--fs-base);
+  grid-column-start: 2;
+  grid-row: 2;
+  display: flex;
+}
+footer p{
+  color: var(--ivory);
+}
+/* responsive */
+@media (max-width: 767px) {
+  .characters{
+    height: 80vh;
+  }
+  .char-container {
+    margin: var(--space-2);
+  }
+  .char-content {
+    flex-direction: column;
+  }
+  .char-image, .char-text {
+    margin: 0;
+    height: auto;
+  }
+  .char-text {
+    text-align: center;
+  }
+  footer{
+    grid-column: 1;
+    grid-row: 3;
+    height: auto;
+}
+}
